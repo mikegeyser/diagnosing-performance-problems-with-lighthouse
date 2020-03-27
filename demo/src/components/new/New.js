@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../../Api';
 import Meme from '../meme/Meme';
+import {TextField, Button} from '@material-ui/core';
 
 import './New.css';
 
@@ -60,9 +61,8 @@ class New extends Component {
                     {this.state.templates.map((template, index) => <option key={index} value={template.fullPath}>{template.fileName}</option>)}
                 </select>
 
-                <input type="text" placeholder="Top" required onChange={(e) => this.changeTop(e.target.value)} />
-
-                <input type="text" placeholder="Bottom" required onChange={(e) => this.changeBottom(e.target.value)} />
+                <TextField id="outlined-basic" variant="outlined" label="Top" placeholder="Top" required onChange={(e) => this.changeTop(e.target.value)}/>
+                <TextField id="outlined-basic" variant="outlined" label="Bottom" placeholder="Bottom" required onChange={(e) => this.changeBottom(e.target.value)}/>
 
                 {this.state.preview && <Meme meme={this.state.preview} update={new Date()}></Meme>}
 
@@ -71,7 +71,7 @@ class New extends Component {
                         <a href="/">Cancel</a>
                     </div>
                     <div>
-                        <button type="button" onClick={() => this.save()}>Save</button>
+                        <Button variant="contained" color="primary" onClick={() => this.save()}>Save</Button>
                     </div>
                 </div >
             </form >
