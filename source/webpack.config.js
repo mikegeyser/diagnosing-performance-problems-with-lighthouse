@@ -1,6 +1,8 @@
 const path = require('path');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const merge = require('webpack-merge');
+const imageminMozjpeg = require('imagemin-mozjpeg');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 const base = {
   entry: './src/index.js',
@@ -17,7 +19,18 @@ const base = {
       }
     ]
   },
-  plugins: []
+  plugins: [
+    new CopyWebpackPlugin([
+      {
+        from: 'images/**/**',
+        to: path.resolve(__dirname, 'public/')
+      }
+    ]),
+    new ImageminPlugin({
+      path: path.resolve('public/images'),
+      plugins: [imageminMozjpeg({ quality: 50 })]
+    })
+  ]
 };
 
 const legacy = merge(base, {

@@ -1,0 +1,17 @@
+{
+  "ci": {
+    "collect": {
+      "url": ["http://localhost:3001/public"]
+    },
+    "assert": {
+      "preset": "lighthouse:no-pwa",
+      "assertions": {
+        "categories:performance": ["error", {"minScore": 0.99}],
+        "meta-description": "off",
+        "uses-text-compression": "off",
+        "uses-http2": "off",
+        "uses-webp-images": "off"
+      }
+    }
+  }
+}
